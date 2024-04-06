@@ -36,15 +36,13 @@ namespace ListOfEmployees.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Employee employee)
 		{
-			try
-			{
+			if(ModelState.IsValid)
+			{ 
 				_employeeService.AddEmployee(employee);
 				return RedirectToAction(nameof(Index));
 			}
-			catch
-			{
 				return View();
-			}
+
 		}
 
 		// GET: EmployeeController/Edit/5

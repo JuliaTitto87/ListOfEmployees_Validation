@@ -1,15 +1,23 @@
-﻿namespace ListOfEmployees__DomainModel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ListOfEmployees__DomainModel
 {
 	public class Employee
 	{
-		public int Id { get; set; }
+		[Required]
+		public required int Id { get; set; }
 
-		public int PersonnelNumber { get; set; }
+		[RegularExpression("0000000", ErrorMessage ="Поле должно состоять из 7 цифр")]
+		public required int PersonnelNumber { get; set; }
 
+		[Required (ErrorMessage ="Поле ФИО работника не может быть пустым")]
 		public required string FullName { get; set; }
 
-		public required string Department { get; set; }
+		[MaxLength  (100, ErrorMessage ="Максимальная  длина текста - 100 символов")  ]
 
-		public required string EmployeesPosition { get; set; }
+		public string? Department { get; set; }
+
+        [Required(ErrorMessage = "Поле Должность не может быть пустым")]
+        public required string EmployeesPosition { get; set; }
 	}
 }
