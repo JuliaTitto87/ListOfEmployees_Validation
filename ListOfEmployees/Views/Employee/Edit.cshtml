@@ -1,0 +1,29 @@
+﻿@model ListOfEmployees__DomainModel.Employee
+@using ListOfEmployees.Controllers
+
+@using System.Linq
+
+<h2>Изменить данные о сотруднике таб.N @Model.PersonnelNumber</h2>
+@using (Html.BeginForm(
+ actionName: nameof(EmployeeController.Edit),
+ controllerName: Html.ViewContext.RouteData.Values["controller"].ToString(),
+ FormMethod.Post))
+{
+    <div>
+        <div>
+            <label style="width:200px"> ФИО работника</label>
+            @Html.EditorFor(model => model.FullName)
+        </div>
+        <div>
+            <label style="width:200px"> Отдел </label>
+            @Html.EditorFor(model => model.Department)
+        </div>    
+        <div>
+            <label style="width:200px"> Должность </label>
+            @Html.EditorFor(model => model.EmployeesPosition)
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить измененя" class="btn btn-primary" />
+    </div>
+}
